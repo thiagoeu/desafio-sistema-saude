@@ -13,7 +13,7 @@ export class Medicine {
   dosage: string;
 
   @Column()
-  quantityInStock: number;
+  stock: number;
 
   @Column()
   expirationDate: Date;
