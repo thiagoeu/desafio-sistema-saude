@@ -16,13 +16,15 @@ export class User {
   @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ select: false }) // Não retorna senha por padrão
   password: string;
 
   @Column({ type: 'enum', enum: Role, default: Role.PACIENTE })
   role: Role;
 
-  // Se o usuário for paciente e tiver acesso ao sistema
+  @Column({ nullable: true, select: false }) // Refresh token seguro
+  currentHashedRefreshToken?: string;
+
   @OneToOne(() => Patient, (patient) => patient.user, { nullable: true })
   @JoinColumn()
   patient?: Patient;

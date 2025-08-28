@@ -42,3 +42,30 @@ O sistema possui três perfis principais de acesso:
 ### ⚡ Observação
 
 Este projeto é **apenas para estudo e prática de tecnologias**, portanto o escopo foi simplificado e pode ser expandido no futuro (ex.: separar atendente de farmacêutico, criar papel de estoquista, etc).
+
+### 🗂 Entidades do Sistema
+
+O modelo de dados do Sistema:
+
+- **User**
+  - Representa quem tem acesso ao sistema (`email`, `password`, `role`).
+  - Relacionamento opcional com `Patient` (quando o usuário é paciente).
+
+- **Patient**
+  - Dados pessoais (`cpf`, `address`, `medicalHistory`).
+  - Pode ter login vinculado (`User`).
+  - Relacionamento 1:N com `Prescription`.
+- **Medicine**
+  - Informações sobre o medicamento (`name`, `dosage`, `stock`, `expirationDate`, `manufacturer`).
+  - Relacionamento 1:N com `Prescription`.
+  - Administrado pelo ADMIN, baixado automaticamente pelo sistema quando há dispensação.
+
+- **Prescription**
+  - Relaciona `Patient` + `Medicine`.
+  - Contém `quantity`, `usagePeriod`, `createdBy (User)` e data de criação.
+  - Criada pelo FUNCIONÁRIO, consultada pelo PACIENTE.
+
+- **Dispense**
+  - Relaciona `Prescription` + `dispensedBy (User)`.
+  - Registra `quantity` entregue e data (`dispensedAt`).
+  - Funciona como histórico de entregas de medicamentos para o PACIENTE.
