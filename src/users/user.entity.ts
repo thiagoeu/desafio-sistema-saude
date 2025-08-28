@@ -22,8 +22,8 @@ export class User {
   @Column({ type: 'enum', enum: Role, default: Role.PACIENTE })
   role: Role;
 
-  @Column({ nullable: true, select: false }) // Refresh token seguro
-  currentHashedRefreshToken?: string;
+  @Column({ type: 'text', nullable: true, select: false }) // Corrigido
+  currentHashedRefreshToken: string | null;
 
   @OneToOne(() => Patient, (patient) => patient.user, { nullable: true })
   @JoinColumn()

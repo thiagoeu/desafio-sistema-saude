@@ -11,6 +11,7 @@ import { PatientModule } from './patient/patient.module';
 import { MedicineModule } from './medicine/medicine.module';
 import { PrescriptionModule } from './prescription/prescription.module';
 import { DispenseModule } from './dispense/dispense.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { DispenseModule } from './dispense/dispense.module';
     MedicineModule,
     PrescriptionModule,
     DispenseModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
