@@ -13,8 +13,9 @@ export class AuthService {
 
   async validateUser(email: string, password: string): Promise<User> {
     const user = await this.usersService.findByEmail(email, true); // busca senha
+    console.log('User returned by findByEmail:', user);
     if (!user) throw new UnauthorizedException('Invalid credentials');
-
+    console.log(user.password);
     const passwordMatches = await bcrypt.compare(password, user.password);
     if (!passwordMatches)
       throw new UnauthorizedException('Invalid credentials');

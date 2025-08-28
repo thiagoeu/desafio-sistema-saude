@@ -16,7 +16,7 @@ export class User {
   @Column({ unique: true })
   email: string;
 
-  @Column({ select: false }) // Não retorna senha por padrão
+  @Column({ select: true })
   password: string;
 
   @Column({ type: 'enum', enum: Role, default: Role.PACIENTE })
